@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+  <meta charset="UTF-8">
+  <title>桃花堂</title>
+  <style>
+    body {
+      font-family: "Microsoft YaHei", sans-serif;
+      background: #fdfdfd;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      height: 100vh;
+    }
+    /* 左侧按钮区 */
+    .sidebar {
+      width: 220px;
+      background: #fff;
+      border-right: 2px solid #f2d6e6;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+    }
+    .btn {
+      padding: 12px;
+      margin: 8px 0;
+      text-align: center;
+      border-radius: 10px;
+      border: 1px solid #f2d6e6;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .btn:hover {
+      background: #ffe6f2;
+      transform: translateX(5px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+    .btn.active {
+      background: #f9cde7;
+      font-weight: bold;
+      color: #fff;
+    }
+    /* 右侧内容区 */
+    .content {
+      flex: 1;
+      padding: 40px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+      display: none;
+    }
+    .content.show {
+      display: block;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    h2 {
+      color: #d474a2;
+    }
+    pre {
+      white-space: pre-wrap;
+      line-height: 1.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="btn active" data-target="bg">社团背景</div>
+    <div class="btn" data-target="goal">社团宗旨</div>
+    <div class="btn" data-target="activity">社团活动</div>
+    <div class="btn" data-target="join">入社方式</div>
+  </div>
+
+  <div class="main">
+    <div id="bg" class="content show">
+      <h2>社团背景</h2>
+      <pre>桃花堂 | 一起摸鱼，一起创作
+这里没有太多条条框框，只有随意的闲聊、随心的分享。
+我们研究词条，琢磨风格，也聊八卦，薅薅羊毛，写写 OC设定。</pre>
+    </div>
+
+    <div id="goal" class="content">
+      <h2>社团宗旨</h2>
+      <pre>能学一点是一点，学不会就和堂主一起摆烂罢~</pre>
+    </div>
+
+    <div id="activity" class="content">
+      <h2>社团活动</h2>
+      <pre>🌸创作向
+1. Prompt 接龙
+2. 轻量化比赛
+3. 梗图接龙
+4. 角色公嬷挑战
+
+🌸娱乐互动向
+1. 日常摆烂
+2. 快问快答小游戏
+3. 聊OC设定、诗词接龙
+
+🌸福利向
+1. 活跃奖励
+2. 桃花堂图鉴
+3. 许愿池</pre>
+    </div>
+
+    <div id="join" class="content">
+      <h2>入社方式</h2>
+      <pre>Q群号：1065284192
+欢迎加入桃花堂，一起摸鱼创作！</pre>
+    </div>
+  </div>
+
+  <script>
+    const buttons = document.querySelectorAll('.btn');
+    const contents = document.querySelectorAll('.content');
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        // 按钮切换
+        buttons.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // 内容切换
+        const target = btn.getAttribute('data-target');
+        contents.forEach(c => {
+          if (c.id === target) {
+            c.classList.add('show');
+          } else {
+            c.classList.remove('show');
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
